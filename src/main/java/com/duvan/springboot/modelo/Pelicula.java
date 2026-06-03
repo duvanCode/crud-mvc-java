@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Data
 @Entity
@@ -33,6 +34,7 @@ public class Pelicula {
     private Integer duracionMinutos;
 
     @Column(name = "fecha_estreno")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate fechaEstreno;
 
     @Column(name = "pais_origen")
