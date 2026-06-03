@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CRUD MVC - Usuarios</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="container">
+    <h2>Usuarios</h2>
+    <nav class="nav">
+        <a class="btn" th:href="@{/agregar}">Agregar usuario</a>
+        <a class="btn" th:href="@{/peliculas}">Ir a películas</a>
+    </nav>
+</header>
+
+<main class="container">
+    <div th:if="${usuarios != null and !usuarios.empty}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Cédula</th>
+                <th>Clave</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="u: ${usuarios}">
+                <td th:text="${u.cedula}"></td>
+                <td th:text="${u.clave}"></td>
+                <td th:text="${u.nombre}"></td>
+                <td th:text="${u.email}"></td>
+                <td><a th:href="@{'/editar/' + ${u.cedula}}">Editar</a></td>
+                <td><a th:href="@{'/eliminar/' + ${u.cedula}}">Eliminar</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:if="${usuarios == null or usuarios.empty}">
+        <p>La lista de usuarios está vacía.</p>
+    </div>
+</main>
+</body>
+</html>
+

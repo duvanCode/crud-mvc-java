@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Usuario</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="container">
+    <h2>Datos del usuario</h2>
+    <nav class="nav">
+        <a class="btn" th:href="@{/}">Regresar</a>
+    </nav>
+</header>
+
+<main class="container">
+    <form class="form" th:action="@{/guardar}" method="post" th:object="${usuario}">
+        <div class="field">
+            <label for="cedula">Cédula</label>
+            <input id="cedula" type="number" min="0" th:field="*{cedula}" required>
+        </div>
+        <div class="field">
+            <label for="clave">Clave</label>
+            <input id="clave" type="password" th:field="*{clave}">
+        </div>
+        <div class="field">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" type="text" th:field="*{nombre}" required>
+        </div>
+        <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" th:field="*{email}">
+        </div>
+        <div class="actions">
+            <input class="btn secondary" type="reset" value="Limpiar">
+            <input class="btn" type="submit" value="Guardar">
+        </div>
+    </form>
+</main>
+</body>
+</html>
+

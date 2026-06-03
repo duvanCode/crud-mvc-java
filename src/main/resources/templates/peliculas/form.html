@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Película</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="container">
+    <h2>Datos de la película</h2>
+    <nav class="nav">
+        <a class="btn" th:href="@{/peliculas}">Regresar</a>
+    </nav>
+</header>
+
+<main class="container">
+    <form class="form" th:action="@{/peliculas/guardar}" method="post" th:object="${pelicula}">
+        <input type="hidden" th:field="*{id}">
+
+        <div class="field">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" type="text" th:field="*{nombre}" required>
+        </div>
+        <div class="field">
+            <label for="tituloOriginal">Título original</label>
+            <input id="tituloOriginal" type="text" th:field="*{tituloOriginal}">
+        </div>
+        <div class="field">
+            <label for="director">Director</label>
+            <input id="director" type="text" th:field="*{director}">
+        </div>
+        <div class="field">
+            <label for="genero">Género</label>
+            <input id="genero" type="text" th:field="*{genero}">
+        </div>
+        <div class="field">
+            <label for="duracionMinutos">Duración (min)</label>
+            <input id="duracionMinutos" type="number" min="0" th:field="*{duracionMinutos}">
+        </div>
+        <div class="field">
+            <label for="fechaEstreno">Fecha estreno</label>
+            <input id="fechaEstreno" type="date" th:field="*{fechaEstreno}">
+        </div>
+        <div class="field">
+            <label for="paisOrigen">País origen</label>
+            <input id="paisOrigen" type="text" th:field="*{paisOrigen}">
+        </div>
+        <div class="field">
+            <label for="idiomaOriginal">Idioma original</label>
+            <input id="idiomaOriginal" type="text" th:field="*{idiomaOriginal}">
+        </div>
+        <div class="field">
+            <label for="clasificacionEdad">Clasificación edad</label>
+            <input id="clasificacionEdad" type="text" th:field="*{clasificacionEdad}">
+        </div>
+        <div class="field">
+            <label for="productora">Productora</label>
+            <input id="productora" type="text" th:field="*{productora}">
+        </div>
+        <div class="field">
+            <label for="sinopsis">Sinopsis</label>
+            <textarea id="sinopsis" rows="5" th:field="*{sinopsis}"></textarea>
+        </div>
+
+        <div class="actions">
+            <input class="btn secondary" type="reset" value="Limpiar">
+            <input class="btn" type="submit" value="Guardar">
+        </div>
+    </form>
+</main>
+</body>
+</html>
+

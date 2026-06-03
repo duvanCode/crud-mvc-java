@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>CRUD MVC - Películas</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="container">
+    <h2>Películas</h2>
+    <nav class="nav">
+        <a class="btn" th:href="@{/}">Usuarios</a>
+        <a class="btn" th:href="@{/peliculas/agregar}">Agregar película</a>
+    </nav>
+</header>
+
+<main class="container">
+    <form class="form form-inline" th:action="@{/peliculas}" method="get">
+        <div class="field">
+            <label for="query">Buscar</label>
+            <input id="query" type="text" name="query" placeholder="Nombre o título original" th:value="${query}">
+        </div>
+        <div class="actions">
+            <button class="btn" type="submit">Buscar</button>
+            <a class="btn secondary" th:href="@{/peliculas}">Limpiar</a>
+        </div>
+    </form>
+
+    <div th:if="${peliculas != null and !peliculas.empty}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Título original</th>
+                <th>Director</th>
+                <th>Género</th>
+                <th>Duración</th>
+                <th>Estreno</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p: ${peliculas}">
+                <td th:text="${p.id}"></td>
+                <td th:text="${p.nombre}"></td>
+                <td th:text="${p.tituloOriginal}"></td>
+                <td th:text="${p.director}"></td>
+                <td th:text="${p.genero}"></td>
+                <td th:text="${p.duracionMinutos}"></td>
+                <td th:text="${p.fechaEstreno}"></td>
+                <td><a th:href="@{'/peliculas/editar/' + ${p.id}}">Editar</a></td>
+                <td><a th:href="@{'/peliculas/eliminar/' + ${p.id}}">Eliminar</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:if="${peliculas == null or peliculas.empty}">
+        <p>No hay películas registradas.</p>
+    </div>
+</main>
+</body>
+</html>
+
